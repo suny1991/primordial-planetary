@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="一个精美的网页版贪吃蛇游戏，支持用户登录和分数记录">
+    <title>贪吃蛇 - Snake Game</title>
+    <!-- 使用 Outfit 现代字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 动态背景发光球体 -->
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    
+    <!-- 主容器 -->
+    <div class="main-container">
+        <!-- 渐变标题 -->
+        <h1 class="title">贪吃蛇</h1>
+        <p class="subtitle">Snake Game</p>
+        
+        <!-- 内容区域 -->
+        <div class="content-wrapper">
+            <!-- 左侧面板 -->
+            <div class="side-panel">
+                <!-- 登录表单 - 未登录时显示 -->
+                <div id="loginForm" class="glass-panel login-panel">
+                    <h2 class="panel-title">玩家登录</h2>
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="usernameInput" 
+                            class="neon-input" 
+                            placeholder="请输入用户名"
+                            maxlength="20"
+                            autocomplete="off"
+                        >
+                    </div>
+                    <button id="loginBtn" class="neon-button">登 录</button>
+                </div>
+                
+                <!-- 用户信息面板 - 登录后显示 -->
+                <div id="userPanel" class="glass-panel user-panel hidden">
+                    <h2 class="panel-title">玩家信息</h2>
+                    <div class="user-info">
+                        <div class="info-item">
+                            <span class="info-label">用户名</span>
+                            <span id="displayUsername" class="info-value">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">当前分数</span>
+                            <span id="currentScore" class="info-value score-value">0</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">最高分</span>
+                            <span id="highScore" class="info-value highlight">0</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">登录时间</span>
+                            <span id="loginTime" class="info-value time-value">-</span>
+                        </div>
+                    </div>
+                    <button id="logoutBtn" class="neon-button secondary">登 出</button>
+                </div>
+                
+                <!-- 历史记录面板 -->
+                <div id="historyPanel" class="glass-panel history-panel hidden">
+                    <h2 class="panel-title">游戏记录</h2>
+                    <div id="scoreHistory" class="score-list">
+                        <p class="empty-message">暂无记录</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 游戏区域 -->
+            <div class="game-area">
+                <div class="canvas-container glass-panel">
+                    <canvas id="gameCanvas" width="400" height="400"></canvas>
+                    <!-- 游戏状态遮罩 -->
+                    <div id="gameOverlay" class="game-overlay">
+                        <div id="overlayContent" class="overlay-content">
+                            <p class="overlay-text">按下开始游戏</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 游戏控制按钮 -->
+                <div class="game-controls">
+                    <button id="startBtn" class="neon-button" disabled>开始游戏</button>
+                    <button id="pauseBtn" class="neon-button secondary hidden">暂停</button>
+                </div>
+                
+                <!-- 操作提示 -->
+                <div class="controls-hint">
+                    <span>使用 <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> 方向键控制</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript 模块 -->
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
